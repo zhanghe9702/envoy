@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package envoy.extensions.filters.network.fluentd_proxy.v3alpha;
+
+import "udpa/annotations/status.proto";
+import "validate/validate.proto";
+
+option java_package = "io.envoyproxy.envoy.extensions.filters.network.fluentd_proxy.v3alpha";
+option java_outer_classname = "FluentdProxyProto";
+option java_multiple_files = true;
+option (udpa.annotations.file_status).package_version_status = ACTIVE;
+
+// [#protodoc-title: Fluentd proxy]
+// Fluentd Proxy :ref:`configuration overview <config_network_filters_fluentd_proxy>`.
+// [#extension: envoy.filters.network.fluentd_proxy]
+
+message FluentdProxy {
+  // The human readable prefix to use when emitting :ref:`statistics
+  // <config_network_filters_fluentd_proxy_stats>`.
+  string stat_prefix = 1 [(validate.rules).string = {min_len: 1}];
+
+  // [#not-implemented-hide:] The optional path to use for writing Fluentd access logs.
+  // If the access log field is empty, access logs will not be written.
+  string access_log = 2;
+}

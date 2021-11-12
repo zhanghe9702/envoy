@@ -37,6 +37,8 @@ public:
   const std::string MySQLProxy = "envoy.filters.network.mysql_proxy";
   // Postgres proxy filter
   const std::string PostgresProxy = "envoy.filters.network.postgres_proxy";
+  // Fluentd proxy filter
+  const std::string FluentdProxy = "envoy.filters.network.fluentd_proxy";
   // Rate limit filter
   const std::string RateLimit = "envoy.filters.network.ratelimit";
   // Redis proxy filter

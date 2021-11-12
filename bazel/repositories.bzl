@@ -244,6 +244,7 @@ def envoy_dependencies(skip_targets = []):
     _go_deps(skip_targets)
     _rust_deps()
     _kafka_deps()
+    _fluentd_deps()
 
     _org_llvm_llvm()
     _com_github_wamr()
@@ -1109,6 +1110,16 @@ def _com_github_fdio_vpp_vcl():
         name = "com_github_fdio_vpp_vcl",
         build_file_content = BUILD_ALL_CONTENT,
         patches = ["@envoy//bazel/foreign_cc:vpp_vcl.patch"],
+    )
+
+def _fluentd_deps():
+    external_http_archive(
+        name = "com_github_msgpack_msgpack_c",
+        build_file = "@com_github_datadog_dd_opentracing_cpp//:bazel/external/msgpack.BUILD",
+    )
+    native.bind(
+        name = "msgpack",
+        actual = "@com_github_msgpack_msgpack_c//:msgpack",
     )
 
 def _foreign_cc_dependencies():
